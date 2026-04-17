@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\src\Bonsai.ImGui\Bonsai.ImGui.csproj" />
+    <ProjectReference Include="..\Bonsai.ImGui\Bonsai.ImGui.csproj" />
   </ItemGroup>
 
   <ItemGroup>

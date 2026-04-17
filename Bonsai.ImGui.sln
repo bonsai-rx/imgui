@@ -1,8 +1,10 @@
-Microsoft Visual Studio Solution File, Format Version 12.00
+﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui", "src\Bonsai.ImGui\Bonsai.ImGui.csproj", "{84B8E9C7-A1C4-4061-A0A5-B3F3761C61DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Design", "src\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj", "{91384293-056B-488B-AE6D-DCC11FBD74A6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DEE5DD87-39C1-BF34-B639-A387DCCF972B}"
 	ProjectSection(SolutionItems) = preProject
@@ -13,8 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DEE5DD87
 		build\Package.props = build\Package.props
 		build\Project.csproj.props = build\Project.csproj.props
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Design", "Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj", "{91384293-056B-488B-AE6D-DCC11FBD74A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
