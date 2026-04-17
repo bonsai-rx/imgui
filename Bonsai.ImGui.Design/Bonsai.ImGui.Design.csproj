@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Bonsai - ImGui Design</Title>
+    <Description>Bonsai Library containing backend infrastructure for composing visualizers using Dear ImGui.</Description>
+    <PackageTags>$(PackageTags) Design</PackageTags>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\Bonsai.ImGui\Bonsai.ImGui.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bonsai.Design" Version="2.9.0" />
+    <PackageReference Include="OpenTK.GLControl" Version="3.1.0" />
+  </ItemGroup>
+
+</Project>

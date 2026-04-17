@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace Bonsai.ImGui;
+namespace Bonsai.ImGui.Design;
 using ImGui = Hexa.NET.ImGui.ImGui;
 
 /// <summary>
@@ -102,7 +102,7 @@ public class ImGuiControl : GLControl, IGLContext
             io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;         // Enable Docking
             io.IniFilename = null;
 
-            ImGuiImplWin32.InitForOpenGL(Handle);
+            ImGuiImplWin32.InitForOpenGL(Handle.ToPointer());
             ImGuiImplOpenGL3.Init((string)null);
 
             var extensionEnumerator = extensions.GetEnumerator();
