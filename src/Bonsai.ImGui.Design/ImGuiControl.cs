@@ -32,6 +32,7 @@ public class ImGuiControl : GLControl, IGLContext
     public ImGuiControl()
     {
         GraphicsContext.ShareContexts = false;
+        Size = new Size(640, 480);
     }
 
     /// <summary>
@@ -99,6 +100,7 @@ public class ImGuiControl : GLControl, IGLContext
 
             var io = ImGui.GetIO();
             io.ConfigFlags |= ImGuiConfigFlags.NavEnableKeyboard;     // Enable Keyboard Controls
+            io.ConfigFlags |= ImGuiConfigFlags.NavEnableGamepad;      // Enable Gamepad Controls
             io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;         // Enable Docking
             io.IniFilename = null;
 
@@ -170,12 +172,13 @@ public class ImGuiControl : GLControl, IGLContext
     {
         if (HasValidContext && !disposed)
         {
-            ImGuiImplOpenGL3.Shutdown();
-            ImGuiImplWin32.Shutdown();
             for (int i = extensionContexts.Length - 1; i >= 0; i--)
             {
                 extensionContexts[i].Dispose();
             }
+
+            ImGuiImplOpenGL3.Shutdown();
+            ImGuiImplWin32.Shutdown();
             ImGui.SetCurrentContext(null);
             ImGui.DestroyContext(guiContext);
             disposed = true;
