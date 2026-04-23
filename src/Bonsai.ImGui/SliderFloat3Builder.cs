@@ -1,12 +1,11 @@
-﻿using OpenTK;
-using System;
+﻿using System;
 using System.ComponentModel;
+using System.Numerics;
 using System.Reactive;
 using System.Reactive.Linq;
 
 namespace Bonsai.ImGui;
 using ImGui = Hexa.NET.ImGui.ImGui;
-using SNVector3 = System.Numerics.Vector3;
 
 /// <summary>
 /// Represents an operator that draws a group of three floating-point sliders and
@@ -29,14 +28,13 @@ public class SliderFloat3Builder : SliderFloatBase<Vector3>
         {
             var min = Min;
             var max = Max;
-            var initialValue = InitialValue;
-            var value = new SNVector3(initialValue.X, initialValue.Y, initialValue.Z);
+            var value = InitialValue;
             var label = $"##{Name ?? nameof(ImGui.SliderFloat3)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
                     if (Visible && ImGui.SliderFloat3(label, ref value, min, max))
-                        observer.OnNext(new(value.X, value.Y, value.Z));
+                        observer.OnNext(value);
                 },
                 observer.OnError,
                 observer.OnCompleted);

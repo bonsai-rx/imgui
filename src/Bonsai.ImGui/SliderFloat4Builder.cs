@@ -1,12 +1,11 @@
-﻿using OpenTK;
-using System;
+﻿using System;
 using System.ComponentModel;
+using System.Numerics;
 using System.Reactive;
 using System.Reactive.Linq;
 
 namespace Bonsai.ImGui;
 using ImGui = Hexa.NET.ImGui.ImGui;
-using SNVector4 = System.Numerics.Vector4;
 
 /// <summary>
 /// Represents an operator that draws a group of four floating-point sliders and
@@ -29,14 +28,13 @@ public class SliderFloat4Builder : SliderFloatBase<Vector4>
         {
             var min = Min;
             var max = Max;
-            var initialValue = InitialValue;
-            var value = new SNVector4(initialValue.X, initialValue.Y, initialValue.Z, initialValue.W);
+            var value = InitialValue;
             var label = $"##{Name ?? nameof(ImGui.SliderFloat4)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
                     if (Visible && ImGui.SliderFloat4(label, ref value, min, max))
-                        observer.OnNext(new(value.X, value.Y, value.Z, value.W));
+                        observer.OnNext(value);
                 },
                 observer.OnError,
                 observer.OnCompleted);
