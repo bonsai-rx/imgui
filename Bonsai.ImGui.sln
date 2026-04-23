@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui", "src\Bonsai.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Design", "src\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj", "{91384293-056B-488B-AE6D-DCC11FBD74A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImPlot", "src\Bonsai.ImPlot\Bonsai.ImPlot.csproj", "{79512009-FACF-4426-BFC1-23F00AC3E627}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImPlot.Design", "src\Bonsai.ImPlot.Design\Bonsai.ImPlot.Design.csproj", "{B5EA2543-6C38-4839-BEBD-06DC0C084E1A}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "build", "build", "{DEE5DD87-39C1-BF34-B639-A387DCCF972B}"
 	ProjectSection(SolutionItems) = preProject
 		build\Common.csproj.props = build\Common.csproj.props
@@ -30,6 +34,14 @@ Global
 		{91384293-056B-488B-AE6D-DCC11FBD74A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{91384293-056B-488B-AE6D-DCC11FBD74A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{91384293-056B-488B-AE6D-DCC11FBD74A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79512009-FACF-4426-BFC1-23F00AC3E627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79512009-FACF-4426-BFC1-23F00AC3E627}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79512009-FACF-4426-BFC1-23F00AC3E627}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79512009-FACF-4426-BFC1-23F00AC3E627}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5EA2543-6C38-4839-BEBD-06DC0C084E1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5EA2543-6C38-4839-BEBD-06DC0C084E1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5EA2543-6C38-4839-BEBD-06DC0C084E1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5EA2543-6C38-4839-BEBD-06DC0C084E1A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

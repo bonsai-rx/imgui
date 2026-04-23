@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Bonsai - ImPlot</Title>
+    <Description>Bonsai Library for composing real-time plots and interactive visualizations using Dear ImGui.</Description>
+    <PackageTags>$(PackageTags) ImPlot</PackageTags>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Hexa.NET.ImPlot" Version="2.2.9" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bonsai.ImGui\Bonsai.ImGui.csproj" />
+  </ItemGroup>
+
+</Project>
