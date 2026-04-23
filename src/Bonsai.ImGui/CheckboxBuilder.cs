@@ -11,7 +11,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications whenever the checked status changes.
 /// </summary>
 [Description("Draws a checkbox control and generates a sequence of notifications whenever the checked status changes.")]
-public class CheckboxBuilder : TextControlBuilderBase<bool>
+public class CheckboxBuilder : TextControlBuilder<bool>
 {
     /// <summary>
     /// Gets or sets the initial checked state of the checkbox.

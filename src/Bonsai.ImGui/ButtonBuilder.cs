@@ -11,7 +11,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications whenever the button is clicked.
 /// </summary>
 [Description("Draws a button control and generates a sequence of notifications whenever the button is clicked.")]
-public class ButtonBuilder : TextControlBuilderBase<string>
+public class ButtonBuilder : TextControlBuilder<string>
 {
     /// <inheritdoc/>
     protected override IObservable<string> Generate<TSource>(IObservable<TSource> source)

@@ -5,7 +5,7 @@ namespace Bonsai.ImGui;
 /// <summary>
 /// Provides an abstract base class for floating-point slider controls.
 /// </summary>
-public abstract class SliderFloatBase<TResult> : ControlBuilderBase<TResult>
+public abstract class SliderFloatBase<TResult> : ControlBuilder<TResult>
 {
     /// <summary>
     /// Gets or sets the lower limit of values in the slider.

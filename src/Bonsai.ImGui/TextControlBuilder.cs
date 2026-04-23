@@ -6,7 +6,7 @@ namespace Bonsai.ImGui;
 /// Provides an abstract base class for common UI text controls.
 /// </summary>
 /// <typeparam name="TResult">The type of event notifications emitted by the UI control.</typeparam>
-public abstract class TextControlBuilderBase<TResult> : ControlBuilderBase<TResult>, INamedElement
+public abstract class TextControlBuilder<TResult> : ControlBuilder<TResult>, INamedElement
 {
     /// <summary>
     /// Gets or sets the text associated with this control.

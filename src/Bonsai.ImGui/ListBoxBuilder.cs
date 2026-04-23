@@ -11,7 +11,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications whenever the selected item changes.
 /// </summary>
 [Description("Draws a list box control and generates a sequence of notifications whenever the selected item changes.")]
-public class ListBoxBuilder : ControlBuilderBase<string>
+public class ListBoxBuilder : ControlBuilder<string>
 {
     /// <summary>
     /// Gets or sets the available items to display in the list box.

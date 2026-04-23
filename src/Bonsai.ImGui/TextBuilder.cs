@@ -11,7 +11,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications with the label text.
 /// </summary>
 [Description("Draws a text label and generates a sequence of notifications with the label text.")]
-public class TextBuilder : TextControlBuilderBase<string>
+public class TextBuilder : TextControlBuilder<string>
 {
     /// <inheritdoc/>
     protected override IObservable<string> Generate<TSource>(IObservable<TSource> source)

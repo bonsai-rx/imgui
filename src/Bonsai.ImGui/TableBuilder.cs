@@ -13,7 +13,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications for drawing table contents.
 /// </summary>
 [Description("Begins drawing a table and provides a sequence of notifications for drawing table contents.")]
-public class TableBuilder : ControlBuilderBase<string>
+public class TableBuilder : ControlBuilder<string>
 {
     /// <summary>
     /// Gets or sets the number of columns in the table.

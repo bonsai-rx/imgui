@@ -11,7 +11,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications whenever the selected item changes.
 /// </summary>
 [Description("Draws a dropdown combo box and generates a sequence of notifications whenever the selected item changes.")]
-public class ComboBuilder : ControlBuilderBase<string>
+public class ComboBuilder : ControlBuilder<string>
 {
     /// <summary>
     /// Gets or sets the available items to display in the combo box.

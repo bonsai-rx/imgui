@@ -9,11 +9,10 @@ using System.Reactive.Linq;
 namespace Bonsai.ImGui;
 
 /// <summary>
-/// Provides an abstract base class for common UI control functionality.
+/// Provides an abstract base class for common UI control configuration.
 /// </summary>
-/// <typeparam name="TResult">The type of event notifications emitted by the control.</typeparam>
 [DefaultProperty(nameof(Name))]
-public abstract class ControlBuilderBase<TResult> : SingleArgumentExpressionBuilder, INamedElement
+public abstract class ControlBuilderBase : SingleArgumentExpressionBuilder, INamedElement
 {
     /// <summary>
     /// Gets or sets the name of the control.
@@ -29,7 +28,44 @@ public abstract class ControlBuilderBase<TResult> : SingleArgumentExpressionBuil
     [Category(nameof(CategoryAttribute.Behavior))]
     [Description("Specifies whether the control and all its child controls are displayed.")]
     public bool Visible { get; set; } = true;
+}
 
+/// <summary>
+/// Provides an abstract base class for common UI control functionality.
+/// </summary>
+public abstract class ControlBuilder : ControlBuilderBase
+{
+    /// <summary>
+    /// Builds the expression tree for configuring and rendering the UI control.
+    /// </summary>
+    /// <inheritdoc/>
+    public override Expression Build(IEnumerable<Expression> arguments)
+    {
+        var source = arguments.First();
+        var parameterType = source.Type.GetGenericArguments()[0];
+        return Expression.Call(Expression.Constant(this), nameof(Generate), new[] { parameterType }, source);
+    }
+
+    /// <summary>
+    /// Generates an observable sequence that draws the UI control and emits
+    /// drawing notifications.
+    /// </summary>
+    /// <param name="source">
+    /// An observable sequence of notifications used to render the UI control.
+    /// </param>
+    /// <returns>
+    /// An observable sequence of drawing notifications. Notifications may be
+    /// omitted if the control is not visible or disabled.
+    /// </returns>
+    protected abstract IObservable<TSource> Generate<TSource>(IObservable<TSource> source);
+}
+
+/// <summary>
+/// Provides an abstract base class for common UI control functionality.
+/// </summary>
+/// <typeparam name="TResult">The type of event notifications emitted by the control.</typeparam>
+public abstract class ControlBuilder<TResult> : ControlBuilderBase
+{
     /// <summary>
     /// Builds the expression tree for configuring and rendering the UI control.
     /// </summary>
