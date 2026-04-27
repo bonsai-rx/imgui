@@ -1,0 +1,21 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Bonsai - ImGui Data</Title>
+    <Description>Bonsai Library containing backend infrastructure for converting and storing data for Dear ImGui visualizations.</Description>
+    <PackageTags>$(PackageTags) Data</PackageTags>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="OpenCV.Net" Version="3.4.2" />
+    <PackageReference Include="OpenTK" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bonsai.ImGui\Bonsai.ImGui.csproj" />
+    <ProjectReference Include="..\Bonsai.ImPlot\Bonsai.ImPlot.csproj" />
+  </ItemGroup>
+
+</Project>

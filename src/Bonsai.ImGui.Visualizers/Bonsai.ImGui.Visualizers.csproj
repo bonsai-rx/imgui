@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Bonsai - ImGui Visualizers</Title>
+    <Description>Bonsai Library containing backend infrastructure for composing real-time plots and interactive visualizations using Dear ImGui.</Description>
+    <PackageTags>$(PackageTags) Visualizers</PackageTags>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bonsai.ImGui.Data\Bonsai.ImGui.Data.csproj" />
+    <ProjectReference Include="..\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj" />
+    <ProjectReference Include="..\Bonsai.ImPlot.Design\Bonsai.ImPlot.Design.csproj" />
+  </ItemGroup>
+
+</Project>
