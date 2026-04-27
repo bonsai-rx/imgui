@@ -3,6 +3,7 @@ using Hexa.NET.ImGui;
 using Hexa.NET.ImPlot;
 using System;
 using System.ComponentModel;
+using System.Numerics;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Xml.Serialization;
@@ -39,6 +40,20 @@ public class PlotImageBuilder : ControlBuilder
     [Description("The maximum bounds in plot coordinates at which to plot the image.")]
     public ImPlotPoint BoundsMax { get; set; }
 
+    /// <summary>
+    /// Gets or sets the normalized texture coordinates of the upper-left portion of the image texture.
+    /// </summary>
+    [TypeConverter(typeof(NumericRecordConverter))]
+    [Description("The normalized texture coordinates of the upper-left portion of the image texture.")]
+    public Vector2 UV0 { get; set; }
+
+    /// <summary>
+    /// Gets or sets the normalized texture coordinates of the bottom-right portion of the image texture.
+    /// </summary>
+    [TypeConverter(typeof(NumericRecordConverter))]
+    [Description("The normalized texture coordinates of the bottom-right portion of the image texture.")]
+    public Vector2 UV1 { get; set; } = Vector2.One;
+
     /// <inheritdoc/>
     protected unsafe override IObservable<TSource> Generate<TSource>(IObservable<TSource> source)
     {
@@ -50,7 +65,7 @@ public class PlotImageBuilder : ControlBuilder
                 {
                     if (Visible)
                     {
-                        ImPlot.PlotImage(label, Image, BoundsMin, BoundsMax);
+                        ImPlot.PlotImage(label, Image, BoundsMin, BoundsMax, UV0, UV1);
                         observer.OnNext(value);
                     }
                 },

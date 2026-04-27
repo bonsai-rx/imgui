@@ -31,6 +31,20 @@ public class ImageBuilder : ControlBuilder
     [Description("The size of the image.")]
     public Vector2 ImageSize { get; set; }
 
+    /// <summary>
+    /// Gets or sets the normalized texture coordinates of the upper-left portion of the image texture.
+    /// </summary>
+    [TypeConverter(typeof(NumericRecordConverter))]
+    [Description("The normalized texture coordinates of the upper-left portion of the image texture.")]
+    public Vector2 UV0 { get; set; }
+
+    /// <summary>
+    /// Gets or sets the normalized texture coordinates of the bottom-right portion of the image texture.
+    /// </summary>
+    [TypeConverter(typeof(NumericRecordConverter))]
+    [Description("The normalized texture coordinates of the bottom-right portion of the image texture.")]
+    public Vector2 UV1 { get; set; } = Vector2.One;
+
     /// <inheritdoc/>
     protected unsafe override IObservable<TSource> Generate<TSource>(IObservable<TSource> source)
     {
@@ -41,7 +55,7 @@ public class ImageBuilder : ControlBuilder
                 {
                     if (Visible)
                     {
-                        ImGui.Image(Image, ImageSize);
+                        ImGui.Image(Image, ImageSize, UV0, UV1);
                         observer.OnNext(value);
                     }
                 },
