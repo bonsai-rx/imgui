@@ -10,7 +10,6 @@
   <ItemGroup>
     <PackageReference Include="Bonsai.Core" Version="2.9.0" />
     <PackageReference Include="Hexa.NET.ImGui" Version="2.2.9" />
-    <PackageReference Include="Hexa.NET.ImGui.Backends" Version="1.0.18" />
   </ItemGroup>
 
 </Project>

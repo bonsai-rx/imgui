@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Bonsai.ImGui\Bonsai.ImGui.csproj" />
+    <PackageReference Include="Hexa.NET.ImGui.Backends" Version="1.0.18" />
   </ItemGroup>
 
   <ItemGroup>
