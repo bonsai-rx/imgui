@@ -9,14 +9,20 @@ using System.Reactive.Subjects;
 namespace Bonsai.ImGui.Design;
 
 /// <summary>
-/// Represents an operator that configures an immediate mode visualizer
-/// backend using Dear ImGui.
+/// Provides an abstract base class for operators that configure an immediate mode
+/// visualizer backend using Dear ImGui.
 /// </summary>
-[TypeVisualizer(typeof(ImGuiVisualizer))]
-[Description("Configures an immediate mode visualizer backend using Dear ImGui.")]
-public class ImGuiVisualizerBuilder : ZeroArgumentExpressionBuilder
+[WorkflowElementIcon("Bonsai:ElementIcon.Visualizer")]
+public abstract class ImGuiMashupVisualizerBuilder : ZeroArgumentExpressionBuilder, INamedElement
 {
     internal readonly Subject<Unit> _Render = new();
+
+    /// <summary>
+    /// Gets or sets the name of the visualizer.
+    /// </summary>
+    [Category(nameof(CategoryAttribute.Design))]
+    [Description("The name of the visualizer.")]
+    public string Name { get; set; }
 
     /// <inheritdoc/>
     public override Expression Build(IEnumerable<Expression> arguments)

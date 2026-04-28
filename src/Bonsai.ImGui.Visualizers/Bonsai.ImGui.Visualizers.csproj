@@ -6,12 +6,12 @@
     <PackageTags>$(PackageTags) Visualizers</PackageTags>
     <TargetFrameworks>net472</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Bonsai.ImGui.Data\Bonsai.ImGui.Data.csproj" />
     <ProjectReference Include="..\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj" />
-    <ProjectReference Include="..\Bonsai.ImPlot.Design\Bonsai.ImPlot.Design.csproj" />
   </ItemGroup>
 
 </Project>

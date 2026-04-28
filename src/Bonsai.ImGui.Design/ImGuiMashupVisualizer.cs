@@ -3,7 +3,6 @@ using Bonsai.Expressions;
 using Hexa.NET.ImGui;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Windows.Forms;
@@ -12,10 +11,10 @@ namespace Bonsai.ImGui.Design;
 using ImGui = Hexa.NET.ImGui.ImGui;
 
 /// <summary>
-/// Provides backend infrastructure for displaying the contents of a graphical
-/// user interface constructed using Dear ImGui.
+/// Provides an abstract base class for composing visualizer infrastructure for displaying
+/// graphical user interfaces constructed using Dear ImGui.
 /// </summary>
-public class ImGuiVisualizer : MashupVisualizer
+public abstract class ImGuiMashupVisualizer : MashupVisualizer
 {
     ImGuiControl imGuiControl;
 
@@ -29,7 +28,7 @@ public class ImGuiVisualizer : MashupVisualizer
     /// <inheritdoc/>
     public override void Load(IServiceProvider provider)
     {
-        if (provider.GetService(typeof(MashupVisualizer)) is ImGuiVisualizer imGuiVisualizer &&
+        if (provider.GetService(typeof(MashupVisualizer)) is ImGuiMashupVisualizer imGuiVisualizer &&
             imGuiVisualizer.Control is ImGuiControl mashupControl)
         {
             foreach (var extension in GetExtensions())
@@ -38,7 +37,8 @@ public class ImGuiVisualizer : MashupVisualizer
         else
         {
             var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
-            var controlBuilder = (ImGuiVisualizerBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
+            var controlBuilder = (ImGuiMashupVisualizerBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
+            var windowName = controlBuilder.Name ?? controlBuilder.GetType().Name;
 
             imGuiControl = new ImGuiControl();
             imGuiControl.Dock = DockStyle.Fill;
@@ -52,7 +52,7 @@ public class ImGuiVisualizer : MashupVisualizer
                     ImGui.GetMainViewport(),
                     ImGuiDockNodeFlags.AutoHideTabBar | ImGuiDockNodeFlags.NoUndocking);
 
-                if (ImGui.Begin(nameof(ImGuiVisualizer)))
+                if (ImGui.Begin(windowName))
                 {
                     controlBuilder._Render.OnNext(Unit.Default);
                 }
@@ -63,7 +63,7 @@ public class ImGuiVisualizer : MashupVisualizer
                     ImGuiP.DockBuilderGetCentralNode(dockspaceId) is ImGuiDockNodePtr node &&
                     !node.IsNull)
                 {
-                    ImGuiP.DockBuilderDockWindow(nameof(ImGuiVisualizer), node.ID);
+                    ImGuiP.DockBuilderDockWindow(windowName, node.ID);
                 }
             };
 
@@ -80,7 +80,7 @@ public class ImGuiVisualizer : MashupVisualizer
     /// A sequence of <see cref="IExtensionFactory"/> objects used to initialize the
     /// Dear ImGui context. Initialization follows the order of objects in this sequence.
     /// </returns>
-    protected virtual IEnumerable<IExtensionFactory> GetExtensions() => Enumerable.Empty<IExtensionFactory>();
+    protected abstract IEnumerable<IExtensionFactory> GetExtensions();
 
     /// <inheritdoc/>
     public override IObservable<object> Visualize(IObservable<IObservable<object>> source, IServiceProvider provider)
