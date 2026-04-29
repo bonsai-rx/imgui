@@ -1,0 +1,21 @@
+﻿using Bonsai.Design;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
+
+namespace Bonsai.ImGui.Visualizers;
+
+class DataMemberSelectorEditor : MemberSelectorEditor
+{
+    public DataMemberSelectorEditor()
+        : base(GetDataElementType, true)
+    {
+    }
+
+    static Type GetDataElementType(Expression expression)
+    {
+        var parameterType = expression.Type.GetGenericArguments()[0];
+        return ExpressionHelper.GetGenericTypeBindings(typeof(IEnumerable<>), parameterType).FirstOrDefault() ?? parameterType;
+    }
+}
