@@ -2,7 +2,7 @@
 using OpenTK.Graphics.OpenGL4;
 using System;
 
-namespace Bonsai.ImGui.Data;
+namespace Bonsai.ImGui.Visualizers;
 
 static class TextureHelper
 {

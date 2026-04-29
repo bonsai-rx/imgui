@@ -5,7 +5,7 @@ using System;
 using System.ComponentModel;
 using System.Reactive.Linq;
 
-namespace Bonsai.ImGui.Data;
+namespace Bonsai.ImGui.Visualizers;
 
 /// <summary>
 /// Represents an operator that writes each image in the sequence to a texture object

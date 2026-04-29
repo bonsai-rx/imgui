@@ -6,9 +6,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui", "src\Bonsai.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Design", "src\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj", "{91384293-056B-488B-AE6D-DCC11FBD74A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Data", "src\Bonsai.ImGui.Data\Bonsai.ImGui.Data.csproj", "{F77EEE6C-93B8-4400-BF05-60510A240629}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Visualizers", "src\Bonsai.ImGui.Visualizers\Bonsai.ImGui.Visualizers.csproj", "{F77EEE6C-93B8-4400-BF05-60510A240629}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Visualizers", "src\Bonsai.ImGui.Visualizers\Bonsai.ImGui.Visualizers.csproj", "{8E8E0210-99A6-4B87-B4BA-A02A157D4E73}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImGui.Visualizers.Design", "src\Bonsai.ImGui.Visualizers.Design\Bonsai.ImGui.Visualizers.Design.csproj", "{3BFACBA4-9AFC-496E-96E2-8D0DBA60B6DF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bonsai.ImPlot", "src\Bonsai.ImPlot\Bonsai.ImPlot.csproj", "{79512009-FACF-4426-BFC1-23F00AC3E627}"
 EndProject
@@ -40,10 +40,10 @@ Global
 		{F77EEE6C-93B8-4400-BF05-60510A240629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F77EEE6C-93B8-4400-BF05-60510A240629}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F77EEE6C-93B8-4400-BF05-60510A240629}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8E8E0210-99A6-4B87-B4BA-A02A157D4E73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8E8E0210-99A6-4B87-B4BA-A02A157D4E73}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8E8E0210-99A6-4B87-B4BA-A02A157D4E73}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8E8E0210-99A6-4B87-B4BA-A02A157D4E73}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3BFACBA4-9AFC-496E-96E2-8D0DBA60B6DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3BFACBA4-9AFC-496E-96E2-8D0DBA60B6DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3BFACBA4-9AFC-496E-96E2-8D0DBA60B6DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3BFACBA4-9AFC-496E-96E2-8D0DBA60B6DF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79512009-FACF-4426-BFC1-23F00AC3E627}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{79512009-FACF-4426-BFC1-23F00AC3E627}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{79512009-FACF-4426-BFC1-23F00AC3E627}.Release|Any CPU.ActiveCfg = Release|Any CPU

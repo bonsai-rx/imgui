@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Title>Bonsai - ImGui Visualizers Design</Title>
+    <Description>Bonsai Library containing backend infrastructure for creating Dear ImGui visualizations.</Description>
+    <PackageTags>$(PackageTags) Visualizers Design</PackageTags>
+    <TargetFrameworks>net472</TargetFrameworks>
+    <RuntimeIdentifier>win-x64</RuntimeIdentifier>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj" />
+    <ProjectReference Include="..\Bonsai.ImGui.Visualizers\Bonsai.ImGui.Visualizers.csproj" />
+  </ItemGroup>
+
+</Project>

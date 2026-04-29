@@ -2,16 +2,21 @@
 
   <PropertyGroup>
     <Title>Bonsai - ImGui Visualizers</Title>
-    <Description>Bonsai Library containing backend infrastructure for composing real-time plots and interactive visualizations using Dear ImGui.</Description>
+    <Description>Bonsai Library containing high-level infrastructure for creating Dear ImGui visualizations.</Description>
     <PackageTags>$(PackageTags) Visualizers</PackageTags>
     <TargetFrameworks>net472</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
-    <UseWindowsForms>true</UseWindowsForms>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Bonsai.ImGui.Data\Bonsai.ImGui.Data.csproj" />
-    <ProjectReference Include="..\Bonsai.ImGui.Design\Bonsai.ImGui.Design.csproj" />
+    <PackageReference Include="Hexa.NET.ImGui.Backends" Version="1.0.18" />
+    <PackageReference Include="OpenCV.Net" Version="3.4.2" />
+    <PackageReference Include="OpenTK" Version="3.1.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Bonsai.ImGui\Bonsai.ImGui.csproj" />
+    <ProjectReference Include="..\Bonsai.ImPlot\Bonsai.ImPlot.csproj" />
   </ItemGroup>
 
 </Project>
