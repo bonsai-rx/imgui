@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Reactive.Linq;
 
 namespace Bonsai.ImGui.Visualizers;
+using ImGui = Hexa.NET.ImGui.ImGui;
 
 /// <summary>
 /// Represents an operator that writes each image in the sequence to a texture object
@@ -59,8 +60,20 @@ public class StoreImage : Combinator<IplImage, ImTextureRef>
             int textureId = default;
             ImTextureID texId = default;
             ImTextureRef texRef = default;
+            ImGuiContextPtr activeContext = default;
             return source.Select(image =>
             {
+                var currentContext = ImGui.GetCurrentContext();
+                if (activeContext != currentContext || image is null)
+                {
+                    if (textureId > 0)
+                        GL.DeleteTextures(1, ref textureId);
+                    textureId = default;
+                    texId = default;
+                    texRef = default;
+                    activeContext = currentContext;
+                }
+
                 if (image is not null)
                 {
                     if (textureId == 0)
@@ -77,14 +90,6 @@ public class StoreImage : Combinator<IplImage, ImTextureRef>
 
                     GL.BindTexture(TextureTarget.Texture2D, textureId);
                     TextureHelper.UpdateTexture(TextureTarget.Texture2D, InternalFormat, image);
-                }
-                else
-                {
-                    if (textureId > 0)
-                        GL.DeleteTextures(1, ref textureId);
-                    textureId = default;
-                    texId = default;
-                    texRef = default;
                 }
 
                 return texRef;
