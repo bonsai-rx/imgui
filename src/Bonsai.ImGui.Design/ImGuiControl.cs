@@ -8,6 +8,7 @@ using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace Bonsai.ImGui.Design;
@@ -20,6 +21,8 @@ public class ImGuiControl : GLControl, IGLContext
 {
     static readonly object ConfigureEvent = new();
     static readonly object RenderEvent = new();
+    static readonly object ErrorEvent = new();
+    NativeCallback<ErrorCallback> errorCallback;
     readonly HashSet<IExtensionFactory> extensions = new();
     IExtensionContext[] extensionContexts;
     ImGuiContextPtr guiContext;
@@ -33,6 +36,10 @@ public class ImGuiControl : GLControl, IGLContext
     {
         GraphicsContext.ShareContexts = false;
         Size = new Size(640, 480);
+        errorCallback = new NativeCallback<ErrorCallback>((ctx, userData, msg) =>
+        {
+            OnError(new(ctx, userData, msg));
+        });
     }
 
     /// <summary>
@@ -59,6 +66,15 @@ public class ImGuiControl : GLControl, IGLContext
     }
 
     /// <summary>
+    /// Occurs when a native error is raised by the ImGui context.
+    /// </summary>
+    public event EventHandler<ErrorEventArgs> Error
+    {
+        add { Events.AddHandler(ErrorEvent, value); }
+        remove { Events.RemoveHandler(ErrorEvent, value); }
+    }
+
+    /// <summary>
     /// Raises the <see cref="Configure"/> event.
     /// </summary>
     /// <param name="e">Not used.</param>
@@ -82,6 +98,18 @@ public class ImGuiControl : GLControl, IGLContext
         }
     }
 
+    /// <summary>
+    /// Raises the <see cref="Error"/> event.
+    /// </summary>
+    /// <param name="e">Provides information about the error.</param>
+    protected virtual void OnError(ErrorEventArgs e)
+    {
+        if (Events[ErrorEvent] is EventHandler<ErrorEventArgs> handler)
+        {
+            handler(this, e);
+        }
+    }
+
     /// <inheritdoc/>
     protected unsafe override void OnHandleCreated(EventArgs e)
     {
@@ -94,6 +122,7 @@ public class ImGuiControl : GLControl, IGLContext
             parentForm.FormClosing += (sender, e) => MakeContextCurrent();
 
             guiContext = ImGui.CreateContext(null);
+            guiContext.ErrorCallback = Marshal.GetFunctionPointerForDelegate(errorCallback.Callback).ToPointer();
             ImGui.SetCurrentContext(guiContext);
             ImGuiImplOpenGL3.SetCurrentContext(guiContext);
             ImGuiImplWin32.SetCurrentContext(guiContext);
@@ -181,6 +210,7 @@ public class ImGuiControl : GLControl, IGLContext
             ImGuiImplWin32.Shutdown();
             ImGui.SetCurrentContext(null);
             ImGui.DestroyContext(guiContext);
+            errorCallback.Dispose();
             disposed = true;
         }
 

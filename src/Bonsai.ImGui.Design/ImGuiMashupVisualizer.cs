@@ -94,6 +94,11 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
             () => new Timer(),
             timer =>
             {
+                var onError = Observable.FromEventPattern<ErrorEventArgs>(
+                    handler => imGuiControl.Error += handler,
+                    handler => imGuiControl.Error -= handler)
+                    .SelectMany(evt => Observable.Throw<EventPattern<EventArgs>>(
+                        new InvalidOperationException(evt.EventArgs.Message)));
                 timer.Interval = TargetInterval;
                 var timerTick = Observable.FromEventPattern<EventHandler, EventArgs>(
                     handler => timer.Tick += handler,
@@ -101,6 +106,7 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
                 timer.Start();
                 return timerTick
                   .Do(_ => imGuiControl?.Invalidate())
+                  .Merge(onError)
                   .Finally(timer.Stop);
             });
     }
