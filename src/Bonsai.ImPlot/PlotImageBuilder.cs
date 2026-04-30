@@ -63,9 +63,10 @@ public class PlotImageBuilder : ControlBuilder
             var sourceObserver = Observer.Create<TSource>(
                 value =>
                 {
-                    if (Visible)
+                    var image = Image;
+                    if (Visible && !image.TexID.IsNull)
                     {
-                        ImPlot.PlotImage(label, Image, BoundsMin, BoundsMax, UV0, UV1);
+                        ImPlot.PlotImage(label, image, BoundsMin, BoundsMax, UV0, UV1);
                         observer.OnNext(value);
                     }
                 },
