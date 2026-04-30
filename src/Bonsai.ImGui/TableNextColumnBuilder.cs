@@ -25,7 +25,7 @@ public class TableNextColumnBuilder : ControlBuilder
             var sourceObserver = Observer.Create<TSource>(
                 value =>
                 {
-                    if (ImGui.TableNextColumn())
+                    if (Visible && ImGui.TableNextColumn())
                         observer.OnNext(value);
                 },
                 observer.OnError,
