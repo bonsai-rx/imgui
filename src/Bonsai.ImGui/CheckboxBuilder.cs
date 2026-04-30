@@ -25,6 +25,7 @@ public class CheckboxBuilder : TextControlBuilder<bool>
         return Observable.Create<bool>(observer =>
         {
             var checkedState = Checked;
+            observer.OnNext(checkedState);
             var label = $"{Text}##{Name ?? nameof(ImGui.Checkbox)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
