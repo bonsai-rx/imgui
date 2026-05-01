@@ -9,6 +9,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// Represents an operator that returns the current ImGui input/output state
 /// for each notification in the source sequence.
 /// </summary>
+[WorkflowElementIcon("Bonsai:ElementIcon.Hid")]
 [Description("Returns the current ImGui input/output state for each notification in the source sequence.")]
 public class GetIOBuilder : ControlBuilder<IOState>
 {
