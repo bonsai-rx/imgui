@@ -29,6 +29,7 @@ public class SliderFloat4Builder : SliderFloatBase<Vector4>
             var min = Min;
             var max = Max;
             var value = InitialValue;
+            observer.OnNext(value);
             var label = $"##{Name ?? nameof(ImGui.SliderFloat4)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
