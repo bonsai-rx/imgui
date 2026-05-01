@@ -24,7 +24,8 @@ public class InputTextBuilder : TextControlBuilder<string>
     {
         return Observable.Create<string>(observer =>
         {
-            var buf = Text;
+            var buf = Text ?? string.Empty;
+            observer.OnNext(buf);
             var bufSize = (nuint)Capacity;
             var label = $"##{Name ?? nameof(ImGui.InputText)}";
             var sourceObserver = Observer.Create<TSource>(
