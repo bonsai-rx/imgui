@@ -9,6 +9,7 @@ namespace Bonsai.ImGui;
 /// </summary>
 public abstract class SliderIntBase<TResult> : ControlBuilder<TResult>
 {
+    private string format;
     private ImGuiSliderFlags flags;
 
     /// <summary>
@@ -27,7 +28,11 @@ public abstract class SliderIntBase<TResult> : ControlBuilder<TResult>
     /// Gets or sets the format string used to display the value.
     /// </summary>
     [Description("The format string used to display the value.")]
-    public string Format { get; set; }
+    public string Format
+    {
+        get => format;
+        set => format = string.IsNullOrEmpty(value) ? null : value;
+    }
 
     /// <summary>
     /// Gets or sets the configuration flags for the slider control.
