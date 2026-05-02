@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Hexa.NET.ImGui;
+using System.ComponentModel;
 
 namespace Bonsai.ImGui;
 
@@ -18,4 +19,16 @@ public abstract class SliderIntBase<TResult> : ControlBuilder<TResult>
     /// </summary>
     [Description("The upper limit of values in the slider.")]
     public int Max { get; set; } = 100;
+
+    /// <summary>
+    /// Gets or sets the format string used to display the value.
+    /// </summary>
+    [Description("The format string used to display the value.")]
+    public string Format { get; set; }
+
+    /// <summary>
+    /// Gets or sets the configuration flags for the slider control.
+    /// </summary>
+    [Description("The configuration flags for the slider control.")]
+    public ImGuiSliderFlags Flags { get; set; }
 }

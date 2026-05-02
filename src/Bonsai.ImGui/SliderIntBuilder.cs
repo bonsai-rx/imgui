@@ -26,13 +26,14 @@ public class SliderIntBuilder : SliderIntBase<int>
         {
             var min = Min;
             var max = Max;
+            var format = Format;
             var value = InitialValue;
             observer.OnNext(value);
             var label = $"##{Name ?? nameof(ImGui.SliderInt)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
-                    if (Visible && ImGui.SliderInt(label, ref value, min, max))
+                    if (Visible && ImGui.SliderInt(label, ref value, min, max, format, Flags))
                         observer.OnNext(value);
                 },
                 observer.OnError,

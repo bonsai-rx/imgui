@@ -26,13 +26,14 @@ public class SliderFloatBuilder : SliderFloatBase<float>
         {
             var min = Min;
             var max = Max;
+            var format = Format;
             var value = InitialValue;
             observer.OnNext(value);
             var label = $"##{Name ?? nameof(ImGui.SliderFloat)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
-                    if (Visible && ImGui.SliderFloat(label, ref value, min, max))
+                    if (Visible && ImGui.SliderFloat(label, ref value, min, max, format, Flags))
                         observer.OnNext(value);
                 },
                 observer.OnError,
