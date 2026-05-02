@@ -10,6 +10,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// Represents an operator that draws a text label and generates
 /// a sequence of notifications with the label text.
 /// </summary>
+[WorkflowElementIcon("Bonsai:ElementIcon.Visualizer")]
 [Description("Draws a text label and generates a sequence of notifications with the label text.")]
 public class TextBuilder : TextControlBuilder<string>
 {

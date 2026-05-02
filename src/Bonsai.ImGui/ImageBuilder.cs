@@ -14,6 +14,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// a sequence of notifications whenever the image is visible.
 /// </summary>
 [ResetCombinator]
+[WorkflowElementIcon("Bonsai:ElementIcon.Visualizer")]
 [Description("Draws an image and generates a sequence of notifications whenever the image is visible.")]
 public class ImageBuilder : ControlBuilder
 {

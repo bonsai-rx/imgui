@@ -12,6 +12,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// Represents an operator that begins drawing a table and provides
 /// a sequence of notifications for drawing table contents.
 /// </summary>
+[WorkflowElementIcon("Bonsai:ElementIcon.Visualizer")]
 [Description("Begins drawing a table and provides a sequence of notifications for drawing table contents.")]
 public class TableBuilder : ControlBuilder<string>
 {

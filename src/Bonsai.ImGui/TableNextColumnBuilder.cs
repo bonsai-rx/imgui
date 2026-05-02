@@ -14,6 +14,7 @@ using ImGui = Hexa.NET.ImGui.ImGui;
 /// If currently on the last column, this operator will append into the first column
 /// of the next row.
 /// </remarks>
+[WorkflowElementIcon("Bonsai:ElementIcon.Visualizer")]
 [Description("Appends into the next column of the current table and generates a sequence of notifications whenever the column is visible.")]
 public class TableNextColumnBuilder : ControlBuilder
 {
