@@ -1,4 +1,5 @@
 ﻿using Hexa.NET.ImGui;
+using System;
 using System.ComponentModel;
 
 namespace Bonsai.ImGui;
@@ -8,6 +9,8 @@ namespace Bonsai.ImGui;
 /// </summary>
 public abstract class SliderFloatBase<TResult> : ControlBuilder<TResult>
 {
+    private ImGuiSliderFlags flags;
+
     /// <summary>
     /// Gets or sets the lower limit of values in the slider.
     /// </summary>
@@ -29,6 +32,18 @@ public abstract class SliderFloatBase<TResult> : ControlBuilder<TResult>
     /// <summary>
     /// Gets or sets the configuration flags for the slider control.
     /// </summary>
+    /// <exception cref="ArgumentException">
+    /// Thrown when <paramref name="value"/> contains a flag that is not
+    /// supported by slider controls.
+    /// </exception>
     [Description("The configuration flags for the slider control.")]
-    public ImGuiSliderFlags Flags { get; set; }
+    public ImGuiSliderFlags Flags
+    {
+        get => flags;
+        set
+        {
+            Validate.SliderFlags(value);
+            flags = value;
+        }
+    }
 }
