@@ -25,11 +25,11 @@ public class ComboBuilder : ControlBuilder<string>
         return Observable.Create<string>(observer =>
         {
             var currentItem = 0;
-            var items = Items ?? [];
             var label = $"##{Name ?? nameof(ImGui.Combo)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
+                    var items = Items ?? [];
                     if (Visible && ImGui.Combo(label, ref currentItem, items, items.Length))
                         observer.OnNext(items[currentItem]);
                 },

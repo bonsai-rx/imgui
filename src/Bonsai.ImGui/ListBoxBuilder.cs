@@ -25,11 +25,11 @@ public class ListBoxBuilder : ControlBuilder<string>
         return Observable.Create<string>(observer =>
         {
             var currentItem = 0;
-            var items = Items ?? [];
             var label = $"##{Name ?? nameof(ImGui.ListBox)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
+                    var items = Items ?? [];
                     if (Visible && ImGui.ListBox(label, ref currentItem, items, items.Length))
                         observer.OnNext(items[currentItem]);
                 },
