@@ -27,6 +27,23 @@ internal static class Validate
                 nameof(value));
     }
 
+    public static void ColorEditFlags(ImGuiColorEditFlags value)
+    {
+        CheckColorEditCategory(value, ImGuiColorEditFlags.DisplayMask, "display format", "DisplayRGB, DisplayHSV, DisplayHex");
+        CheckColorEditCategory(value, ImGuiColorEditFlags.InputMask, "input format", "InputRGB, InputHSV");
+        CheckColorEditCategory(value, ImGuiColorEditFlags.PickerMask, "picker style", "PickerHueBar, PickerHueWheel");
+        CheckColorEditCategory(value, ImGuiColorEditFlags.DataTypeMask, "data type", "Uint8, Float");
+    }
+
+    private static void CheckColorEditCategory(ImGuiColorEditFlags value, ImGuiColorEditFlags mask, string category, string options)
+    {
+        var bits = (int)(value & mask);
+        if ((bits & (bits - 1)) != 0)
+            throw new ArgumentException(
+                $"Only one {category} flag ({options}) can be selected.",
+                nameof(value));
+    }
+
     public static void NumericInputFlags(ImGuiInputTextFlags value)
     {
         const ImGuiInputTextFlags invalid =
