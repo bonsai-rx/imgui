@@ -26,16 +26,13 @@ public class SliderFloat4Builder : SliderFloatBase<Vector4>
     {
         return Observable.Create<Vector4>(observer =>
         {
-            var min = Min;
-            var max = Max;
-            var format = Format;
             var value = InitialValue;
             observer.OnNext(value);
             var label = $"##{Name ?? nameof(ImGui.SliderFloat4)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
-                    if (Visible && ImGui.SliderFloat4(label, ref value, min, max, format, Flags))
+                    if (Visible && ImGui.SliderFloat4(label, ref value, Min, Max, Format, Flags))
                         observer.OnNext(value);
                 },
                 observer.OnError,
