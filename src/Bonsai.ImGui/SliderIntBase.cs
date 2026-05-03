@@ -41,6 +41,7 @@ public abstract class SliderIntBase<TResult> : ControlBuilder<TResult>
     /// Thrown when <paramref name="value"/> contains a flag that is not
     /// supported by slider controls.
     /// </exception>
+    [TypeConverter(typeof(SliderFlagsConverter))]
     [Description("The configuration flags for the slider control.")]
     public ImGuiSliderFlags Flags
     {

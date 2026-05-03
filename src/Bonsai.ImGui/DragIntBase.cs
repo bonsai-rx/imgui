@@ -9,6 +9,7 @@ namespace Bonsai.ImGui;
 public abstract class DragIntBase<TResult> : ControlBuilder<TResult>
 {
     private string format;
+    private ImGuiSliderFlags flags;
 
     /// <summary>
     /// Gets or sets the rate at which the value changes when dragging,
@@ -46,6 +47,19 @@ public abstract class DragIntBase<TResult> : ControlBuilder<TResult>
     /// <summary>
     /// Gets or sets the configuration flags for the drag control.
     /// </summary>
+    /// <exception cref="System.ArgumentException">
+    /// Thrown when <paramref name="value"/> contains a flag that is not
+    /// supported by drag controls.
+    /// </exception>
+    [TypeConverter(typeof(DragFlagsConverter))]
     [Description("The configuration flags for the drag control.")]
-    public ImGuiSliderFlags Flags { get; set; }
+    public ImGuiSliderFlags Flags
+    {
+        get => flags;
+        set
+        {
+            Validate.DragFlags(value);
+            flags = value;
+        }
+    }
 }
