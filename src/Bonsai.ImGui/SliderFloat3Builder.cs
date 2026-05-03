@@ -26,15 +26,13 @@ public class SliderFloat3Builder : SliderFloatBase<Vector3>
     {
         return Observable.Create<Vector3>(observer =>
         {
-            var min = Min;
-            var max = Max;
             var value = InitialValue;
             observer.OnNext(value);
             var label = $"##{Name ?? nameof(ImGui.SliderFloat3)}";
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
-                    if (Visible && ImGui.SliderFloat3(label, ref value, min, max))
+                    if (Visible && ImGui.SliderFloat3(label, ref value, Min, Max, Format, Flags))
                         observer.OnNext(value);
                 },
                 observer.OnError,
