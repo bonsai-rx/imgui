@@ -7,9 +7,23 @@ internal static class Validate
 {
     public static void SliderFlags(ImGuiSliderFlags value)
     {
+        CheckInvalidMask(value);
         if ((value & ImGuiSliderFlags.WrapAround) != 0)
             throw new ArgumentException(
                 "The WrapAround flag is only supported by Drag controls, not Slider controls.",
+                nameof(value));
+    }
+
+    public static void DragFlags(ImGuiSliderFlags value)
+    {
+        CheckInvalidMask(value);
+    }
+
+    private static void CheckInvalidMask(ImGuiSliderFlags value)
+    {
+        if ((value & ImGuiSliderFlags.InvalidMask) != 0)
+            throw new ArgumentException(
+                "The InvalidMask value is an internal flag and is not supported.",
                 nameof(value));
     }
 
