@@ -44,6 +44,14 @@ internal static class Validate
                 nameof(value));
     }
 
+    public static void ArrowButtonDirection(ImGuiDir value)
+    {
+        if (value == ImGuiDir.None || value == ImGuiDir.Count)
+            throw new ArgumentException(
+                "ArrowButton requires a cardinal direction: Left, Right, Up, or Down.",
+                nameof(value));
+    }
+
     public static void NumericInputFlags(ImGuiInputTextFlags value)
     {
         const ImGuiInputTextFlags invalid =
