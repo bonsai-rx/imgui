@@ -14,12 +14,18 @@ namespace Bonsai.ImGui;
 [DefaultProperty(nameof(Name))]
 public abstract class ControlBuilderBase : SingleArgumentExpressionBuilder, INamedElement
 {
+    private string name;
+
     /// <summary>
     /// Gets or sets the name of the control.
     /// </summary>
     [Category(nameof(CategoryAttribute.Design))]
     [Description("The name of the control.")]
-    public string Name { get; set; }
+    public string Name
+    {
+        get => name;
+        set => name = string.IsNullOrEmpty(value) ? null : value;
+    }
 
     /// <summary>
     /// Gets or sets a value specifying whether the control and all its child controls
