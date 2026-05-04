@@ -52,11 +52,8 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
                     ImGui.GetMainViewport(),
                     ImGuiDockNodeFlags.AutoHideTabBar | ImGuiDockNodeFlags.NoUndocking);
 
-                if (ImGui.Begin(windowName))
-                {
-                    controlBuilder._Render.OnNext(Unit.Default);
-                }
-
+                ImGui.Begin(windowName);
+                controlBuilder._Render.OnNext(Unit.Default);
                 ImGui.End();
 
                 if (!ImGui.IsWindowDocked() &&
