@@ -18,13 +18,22 @@ public class ButtonBuilder : TextControlBuilder<string>
     {
         return Observable.Create<string>(observer =>
         {
-            var name = Name ?? Text;
-            var label = $"{Text}##{Name ?? nameof(ImGui.Button)}";
+            var capturedName = Name;
+            var capturedText = Text;
+            var idSuffix = $"##{capturedName ?? nameof(ImGui.Button)}";
+            var label = capturedText + idSuffix;
+            var output = capturedName ?? capturedText;
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
+                    if (Text != capturedText)
+                    {
+                        capturedText = Text;
+                        label = capturedText + idSuffix;
+                        output = capturedName ?? capturedText;
+                    }
                     if (Visible && ImGui.Button(label))
-                        observer.OnNext(name);
+                        observer.OnNext(output);
                 },
                 observer.OnError,
                 observer.OnCompleted);

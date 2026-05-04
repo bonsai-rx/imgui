@@ -24,12 +24,19 @@ public class CheckboxBuilder : TextControlBuilder<bool>
     {
         return Observable.Create<bool>(observer =>
         {
+            var capturedText = Text;
             var checkedState = Checked;
             observer.OnNext(checkedState);
-            var label = $"{Text}##{Name ?? nameof(ImGui.Checkbox)}";
+            var idSuffix = $"##{Name ?? nameof(ImGui.Checkbox)}";
+            var label = capturedText + idSuffix;
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
+                    if (Text != capturedText)
+                    {
+                        capturedText = Text;
+                        label = capturedText + idSuffix;
+                    }
                     if (Visible && ImGui.Checkbox(label, ref checkedState))
                         observer.OnNext(checkedState);
                 },
