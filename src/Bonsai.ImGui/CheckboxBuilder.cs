@@ -32,10 +32,11 @@ public class CheckboxBuilder : TextControlBuilder<bool>
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
-                    if (Text != capturedText)
+                    var text = Text;
+                    if (text != capturedText)
                     {
-                        capturedText = Text;
-                        label = capturedText + idSuffix;
+                        capturedText = text;
+                        label = text + idSuffix;
                     }
                     if (Visible && ImGui.Checkbox(label, ref checkedState))
                         observer.OnNext(checkedState);
