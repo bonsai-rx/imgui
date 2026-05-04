@@ -26,11 +26,12 @@ public class ButtonBuilder : TextControlBuilder<string>
             var sourceObserver = Observer.Create<TSource>(
                 _ =>
                 {
-                    if (Text != capturedText)
+                    var text = Text;
+                    if (text != capturedText)
                     {
-                        capturedText = Text;
-                        label = capturedText + idSuffix;
-                        output = capturedName ?? capturedText;
+                        capturedText = text;
+                        label = text + idSuffix;
+                        output = capturedName ?? text;
                     }
                     if (Visible && ImGui.Button(label))
                         observer.OnNext(output);
