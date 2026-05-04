@@ -7,6 +7,7 @@ using OpenTK.Graphics;
 using OpenTK.Graphics.OpenGL4;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
@@ -131,6 +132,9 @@ public class ImGuiControl : GLControl, IGLContext
             io.ConfigFlags |= ImGuiConfigFlags.NavEnableKeyboard;     // Enable Keyboard Controls
             io.ConfigFlags |= ImGuiConfigFlags.NavEnableGamepad;      // Enable Gamepad Controls
             io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;         // Enable Docking
+            io.ConfigErrorRecoveryEnableAssert = false;
+            io.ConfigErrorRecoveryEnableTooltip = true;
+            io.ConfigDebugIsDebuggerPresent = Debugger.IsAttached;
             io.IniFilename = null;
 
             ImGuiImplWin32.InitForOpenGL(Handle.ToPointer());
