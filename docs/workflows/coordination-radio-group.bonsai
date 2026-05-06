@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:imvizui="clr-namespace:Bonsai.ImGui.Visualizers;assembly=Bonsai.ImGui.Visualizers.Design"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                 xmlns:imgui="clr-namespace:Bonsai.ImGui;assembly=Bonsai.ImGui"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="imvizui:ImGuiVisualizerBuilder" />
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="rx:BehaviorSubject" TypeArguments="sys:Int32">
+        <rx:Name>Selection</rx:Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Selection</Name>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="SelectedValue" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="imgui:RadioButtonBuilder">
+        <imgui:Name>RadioA</imgui:Name>
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Text>Option A</imgui:Text>
+        <imgui:ButtonValue>0</imgui:ButtonValue>
+        <imgui:SelectedValue>0</imgui:SelectedValue>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Selection</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Selection</Name>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="SelectedValue" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="imgui:RadioButtonBuilder">
+        <imgui:Name>RadioB</imgui:Name>
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Text>Option B</imgui:Text>
+        <imgui:ButtonValue>1</imgui:ButtonValue>
+        <imgui:SelectedValue>0</imgui:SelectedValue>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Selection</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Selection</Name>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="SelectedValue" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="imgui:RadioButtonBuilder">
+        <imgui:Name>RadioC</imgui:Name>
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Text>Option C</imgui:Text>
+        <imgui:ButtonValue>2</imgui:ButtonValue>
+        <imgui:SelectedValue>0</imgui:SelectedValue>
+      </Expression>
+      <Expression xsi:type="MulticastSubject">
+        <Name>Selection</Name>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="3" To="6" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source2" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="8" To="11" Label="Source1" />
+      <Edge From="9" To="10" Label="Source1" />
+      <Edge From="10" To="11" Label="Source2" />
+      <Edge From="11" To="12" Label="Source1" />
+      <Edge From="13" To="16" Label="Source1" />
+      <Edge From="14" To="15" Label="Source1" />
+      <Edge From="15" To="16" Label="Source2" />
+      <Edge From="16" To="17" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>

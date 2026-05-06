@@ -5,7 +5,7 @@ using System.Numerics;
 using System.Reactive;
 using System.Reactive.Linq;
 
-namespace Bonsai.ImGui;
+namespace Bonsai.ImPlot;
 using ImPlot = Hexa.NET.ImPlot.ImPlot;
 
 /// <summary>

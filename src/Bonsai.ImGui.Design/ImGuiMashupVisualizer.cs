@@ -71,7 +71,7 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
     }
 
     /// <summary>
-    /// Returns the extensions to initialize with the Dear ImGui backend infrastructure.
+    /// Returns the extensions to initialize alongside the Dear ImGui context.
     /// </summary>
     /// <returns>
     /// A sequence of <see cref="IExtensionFactory"/> objects used to initialize the

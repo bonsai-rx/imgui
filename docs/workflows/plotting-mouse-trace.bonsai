@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:imvizui="clr-namespace:Bonsai.ImGui.Visualizers;assembly=Bonsai.ImGui.Visualizers.Design"
+                 xmlns:implot="clr-namespace:Bonsai.ImPlot;assembly=Bonsai.ImPlot"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:wie="clr-namespace:Bonsai.Windows.Input;assembly=Bonsai.Windows.Input"
+                 xmlns:imviz="clr-namespace:Bonsai.ImGui.Visualizers;assembly=Bonsai.ImGui.Visualizers"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="imvizui:ImPlotVisualizerBuilder" />
+      <Expression xsi:type="implot:PlotBuilder">
+        <implot:Visible>true</implot:Visible>
+        <implot:Size>
+          <implot:X>-1</implot:X>
+          <implot:Y>0</implot:Y>
+        </implot:Size>
+        <implot:Flags>None</implot:Flags>
+        <implot:FlagsX>AutoFit</implot:FlagsX>
+        <implot:FlagsY>AutoFit</implot:FlagsY>
+      </Expression>
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>Plot</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="wie:MouseMove" />
+      </Expression>
+      <Expression xsi:type="imviz:RollingBufferBuilder">
+        <imviz:Capacity>1000</imviz:Capacity>
+        <imviz:ValueSelector>X,Y</imviz:ValueSelector>
+      </Expression>
+      <Expression xsi:type="imviz:LatestOnNewFrame">
+        <Name>Plot</Name>
+      </Expression>
+      <Expression xsi:type="imviz:PlotLineSeriesBuilder">
+        <imviz:Visible>true</imviz:Visible>
+        <imviz:Flags>None</imviz:Flags>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="1" To="2" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>

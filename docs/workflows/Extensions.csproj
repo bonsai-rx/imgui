@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">            
+
+  <PropertyGroup>
+    <TargetFramework>net472</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Bonsai.Core" Version="2.9.0" />
+    <PackageReference Include="Hexa.NET.ImGui" Version="2.2.9" />
+  </ItemGroup>
+
+</Project>

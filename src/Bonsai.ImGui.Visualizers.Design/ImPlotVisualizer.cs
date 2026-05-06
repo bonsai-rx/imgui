@@ -10,8 +10,7 @@ using System.Collections.Generic;
 namespace Bonsai.ImGui.Visualizers;
 
 /// <summary>
-/// Provides backend infrastructure for displaying the contents of a graphical
-/// user interface using ImPlot.
+/// Displays the contents of a graphical user interface constructed using Dear ImGui and ImPlot.
 /// </summary>
 public class ImPlotVisualizer : ImGuiMashupVisualizer
 {

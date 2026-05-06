@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>Bonsai - ImPlot</Title>
-    <Description>Bonsai Library for composing real-time plots using Dear ImGui.</Description>
+    <Description>Bonsai Library for composing real-time 2D plots using ImPlot.</Description>
     <PackageTags>$(PackageTags) ImPlot</PackageTags>
     <TargetFrameworks>net472</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>

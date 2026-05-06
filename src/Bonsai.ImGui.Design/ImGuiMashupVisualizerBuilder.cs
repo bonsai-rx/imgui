@@ -10,7 +10,7 @@ namespace Bonsai.ImGui.Design;
 
 /// <summary>
 /// Provides an abstract base class for operators that configure an immediate mode
-/// visualizer backend using Dear ImGui.
+/// visualizer using Dear ImGui.
 /// </summary>
 [WorkflowElementIcon("Bonsai:ElementIcon.Visualizer")]
 public abstract class ImGuiMashupVisualizerBuilder : ZeroArgumentExpressionBuilder, INamedElement

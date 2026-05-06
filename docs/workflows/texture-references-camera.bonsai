@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:imvizui="clr-namespace:Bonsai.ImGui.Visualizers;assembly=Bonsai.ImGui.Visualizers.Design"
+                 xmlns:imviz="clr-namespace:Bonsai.ImGui.Visualizers;assembly=Bonsai.ImGui.Visualizers"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:cv="clr-namespace:Bonsai.Vision;assembly=Bonsai.Vision"
+                 xmlns:imgui="clr-namespace:Bonsai.ImGui;assembly=Bonsai.ImGui"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="imvizui:ImGuiVisualizerBuilder" />
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="cv:CameraCapture">
+          <cv:Index>0</cv:Index>
+          <cv:CaptureProperties />
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="imviz:SampleOnNewFrame">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="Combinator">
+        <Combinator xsi:type="imviz:StoreImage">
+          <imviz:InternalFormat>Rgba</imviz:InternalFormat>
+          <imviz:WrapS>Repeat</imviz:WrapS>
+          <imviz:WrapT>Repeat</imviz:WrapT>
+          <imviz:MinFilter>Linear</imviz:MinFilter>
+          <imviz:MagFilter>Linear</imviz:MagFilter>
+        </Combinator>
+      </Expression>
+      <Expression xsi:type="PropertyMapping">
+        <PropertyMappings>
+          <Property Name="Image" />
+        </PropertyMappings>
+      </Expression>
+      <Expression xsi:type="imgui:ImageBuilder">
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:ImageSize>
+          <imgui:X>320</imgui:X>
+          <imgui:Y>240</imgui:Y>
+        </imgui:ImageSize>
+        <imgui:UV0>
+          <imgui:X>0</imgui:X>
+          <imgui:Y>0</imgui:Y>
+        </imgui:UV0>
+        <imgui:UV1>
+          <imgui:X>1</imgui:X>
+          <imgui:Y>1</imgui:Y>
+        </imgui:UV1>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="7" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="5" To="6" Label="Source1" />
+      <Edge From="6" To="7" Label="Source2" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>
