@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>Bonsai - ImGui Visualizers</Title>
-    <Description>Bonsai Library containing high-level infrastructure for creating Dear ImGui visualizations.</Description>
+    <Description>Bonsai Library containing operators for Dear ImGui workflows, including texture storage, frame synchronization, and plot series.</Description>
     <PackageTags>$(PackageTags) Visualizers</PackageTags>
     <TargetFrameworks>net472</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>

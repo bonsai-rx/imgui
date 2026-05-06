@@ -10,8 +10,7 @@ using System.Linq;
 namespace Bonsai.ImGui.Visualizers;
 
 /// <summary>
-/// Provides backend infrastructure for displaying the contents of a graphical
-/// user interface constructed using Dear ImGui.
+/// Displays the contents of a graphical user interface constructed using Dear ImGui.
 /// </summary>
 public class ImGuiVisualizer : ImGuiMashupVisualizer
 {

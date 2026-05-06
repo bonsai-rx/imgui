@@ -1,2 +1,14 @@
 - name: Introduction
   href: ../index.md
+- name: Workflow guide
+- href: backend-setup.md
+- href: input-state.md
+- href: containers.md
+- href: coordination.md
+- href: texture-references.md
+- href: plotting.md
+- name: Developer guide
+- href: custom-controls.md
+- href: property-lifetime.md
+- href: error-handling.md
+- href: custom-extensions.md

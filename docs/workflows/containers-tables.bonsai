@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WorkflowBuilder Version="2.9.0"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xmlns:imvizui="clr-namespace:Bonsai.ImGui.Visualizers;assembly=Bonsai.ImGui.Visualizers.Design"
+                 xmlns:rx="clr-namespace:Bonsai.Reactive;assembly=Bonsai.Core"
+                 xmlns:imgui="clr-namespace:Bonsai.ImGui;assembly=Bonsai.ImGui"
+                 xmlns="https://bonsai-rx.org/2018/workflow">
+  <Workflow>
+    <Nodes>
+      <Expression xsi:type="imvizui:ImGuiVisualizerBuilder" />
+      <Expression xsi:type="rx:PublishSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="SubscribeSubject">
+        <Name>Frame</Name>
+      </Expression>
+      <Expression xsi:type="imgui:TableBuilder">
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Columns>2</imgui:Columns>
+        <imgui:Flags>None</imgui:Flags>
+        <imgui:OuterSize>
+          <imgui:X>0</imgui:X>
+          <imgui:Y>0</imgui:Y>
+        </imgui:OuterSize>
+        <imgui:InnerWidth>0</imgui:InnerWidth>
+      </Expression>
+      <Expression xsi:type="imgui:TableNextColumnBuilder">
+        <imgui:Visible>true</imgui:Visible>
+      </Expression>
+      <Expression xsi:type="imgui:TextBuilder">
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Text>Hello</imgui:Text>
+      </Expression>
+      <Expression xsi:type="imgui:TableNextColumnBuilder">
+        <imgui:Visible>true</imgui:Visible>
+      </Expression>
+      <Expression xsi:type="imgui:ButtonBuilder">
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Text>Click me</imgui:Text>
+      </Expression>
+      <Expression xsi:type="imgui:TableNextColumnBuilder">
+        <imgui:Visible>true</imgui:Visible>
+      </Expression>
+      <Expression xsi:type="imgui:SliderFloatBuilder">
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Min>0</imgui:Min>
+        <imgui:Max>1</imgui:Max>
+        <imgui:Flags>None</imgui:Flags>
+        <imgui:InitialValue>0.5</imgui:InitialValue>
+      </Expression>
+      <Expression xsi:type="imgui:TableNextColumnBuilder">
+        <imgui:Visible>true</imgui:Visible>
+      </Expression>
+      <Expression xsi:type="imgui:ComboBuilder">
+        <imgui:Visible>true</imgui:Visible>
+        <imgui:Items>
+          <imgui:string>Option A</imgui:string>
+          <imgui:string>Option B</imgui:string>
+          <imgui:string>Option C</imgui:string>
+        </imgui:Items>
+      </Expression>
+    </Nodes>
+    <Edges>
+      <Edge From="0" To="1" Label="Source1" />
+      <Edge From="2" To="3" Label="Source1" />
+      <Edge From="3" To="4" Label="Source1" />
+      <Edge From="3" To="6" Label="Source1" />
+      <Edge From="3" To="8" Label="Source1" />
+      <Edge From="3" To="10" Label="Source1" />
+      <Edge From="4" To="5" Label="Source1" />
+      <Edge From="6" To="7" Label="Source1" />
+      <Edge From="8" To="9" Label="Source1" />
+      <Edge From="10" To="11" Label="Source1" />
+    </Edges>
+  </Workflow>
+</WorkflowBuilder>

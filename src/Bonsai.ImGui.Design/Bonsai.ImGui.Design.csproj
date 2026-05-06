@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <Title>Bonsai - ImGui Design</Title>
-    <Description>Bonsai Library containing backend infrastructure for composing visualizers using Dear ImGui.</Description>
+    <Description>Bonsai Library providing base classes for hosting Dear ImGui visualizers.</Description>
     <PackageTags>$(PackageTags) Design</PackageTags>
     <TargetFrameworks>net472</TargetFrameworks>
     <RuntimeIdentifier>win-x64</RuntimeIdentifier>
