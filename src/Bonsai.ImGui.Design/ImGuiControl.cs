@@ -179,7 +179,14 @@ public class ImGuiControl : GLControl, IGLContext
             GL.Viewport(0, 0, Width, Height);
             GL.ClearColor(Color.Black);
             GL.Clear(ClearBufferMask.ColorBufferBit);
-            ImGuiImplOpenGL3.RenderDrawData(ImGui.GetDrawData());
+            var drawData = ImGui.GetDrawData();
+            unsafe
+            {
+                if (drawData.Handle != null)
+                {
+                    ImGuiImplOpenGL3.RenderDrawData(drawData);
+                }
+            }
 
             SwapBuffers();
         }
