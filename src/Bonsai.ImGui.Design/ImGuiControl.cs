@@ -153,7 +153,11 @@ public class ImGuiControl : GLControl, IGLContext
     private void MakeContextCurrent()
     {
         MakeCurrent();
+        SetCurrentImGuiContext();
+    }
 
+    private void SetCurrentImGuiContext()
+    {
         ImGui.SetCurrentContext(guiContext);
         ImGuiImplWin32.SetCurrentContext(guiContext);
         ImGuiImplOpenGL3.SetCurrentContext(guiContext);
@@ -188,11 +192,11 @@ public class ImGuiControl : GLControl, IGLContext
     }
 
     /// <inheritdoc/>
-    protected override void WndProc(ref Message m)
+    protected unsafe override void WndProc(ref Message m)
     {
-        if (!disposed)
+        if (!disposed && guiContext.Handle != null)
         {
-            ImGuiImplWin32.SetCurrentContext(guiContext);
+            SetCurrentImGuiContext();
             if (ImGuiImplWin32.WndProcHandler(Handle, (uint)m.Msg, (nuint)m.WParam.ToInt64(), m.LParam) != 0)
                 return;
         }
