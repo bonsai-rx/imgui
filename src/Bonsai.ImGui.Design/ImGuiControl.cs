@@ -202,7 +202,10 @@ public class ImGuiControl : GLControl, IGLContext
             finally
             {
                 if (savedContext.Handle != guiContext.Handle)
+                {
                     ImGui.SetCurrentContext(savedContext);
+                    ImGuiImplWin32.SetCurrentContext(savedContext);
+                }
             }
         }
 
