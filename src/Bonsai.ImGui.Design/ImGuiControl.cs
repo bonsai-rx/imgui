@@ -218,6 +218,8 @@ public class ImGuiControl : GLControl, IGLContext
         if (HasValidContext && !disposed)
         {
             ImGui.SetCurrentContext(guiContext);
+            ImGuiImplWin32.SetCurrentContext(guiContext);
+            ImGuiImplOpenGL3.SetCurrentContext(guiContext);
             for (int i = extensionContexts.Length - 1; i >= 0; i--)
             {
                 extensionContexts[i].Dispose();
