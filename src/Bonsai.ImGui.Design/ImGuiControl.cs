@@ -153,6 +153,7 @@ public class ImGuiControl : GLControl, IGLContext
     private void MakeContextCurrent()
     {
         MakeCurrent();
+
         ImGui.SetCurrentContext(guiContext);
         ImGuiImplWin32.SetCurrentContext(guiContext);
         ImGuiImplOpenGL3.SetCurrentContext(guiContext);
