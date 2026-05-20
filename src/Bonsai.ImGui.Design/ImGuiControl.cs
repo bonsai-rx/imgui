@@ -188,13 +188,26 @@ public class ImGuiControl : GLControl, IGLContext
     }
 
     /// <inheritdoc/>
-    protected override void WndProc(ref Message m)
+    protected unsafe override void WndProc(ref Message m)
     {
-        if (!disposed)
+        if (!disposed && guiContext.Handle != null)
         {
-            ImGuiImplWin32.SetCurrentContext(guiContext);
-            if (ImGuiImplWin32.WndProcHandler(Handle, (uint)m.Msg, (nuint)m.WParam.ToInt64(), m.LParam) != 0)
-                return;
+            var savedContext = ImGui.GetCurrentContext();
+            try
+            {
+                ImGui.SetCurrentContext(guiContext);
+                ImGuiImplWin32.SetCurrentContext(guiContext);
+                if (ImGuiImplWin32.WndProcHandler(Handle, (uint)m.Msg, (nuint)m.WParam.ToInt64(), m.LParam) != 0)
+                    return;
+            }
+            finally
+            {
+                if (savedContext.Handle != guiContext.Handle)
+                {
+                    ImGui.SetCurrentContext(savedContext);
+                    ImGuiImplWin32.SetCurrentContext(savedContext);
+                }
+            }
         }
 
         base.WndProc(ref m);
@@ -205,6 +218,9 @@ public class ImGuiControl : GLControl, IGLContext
     {
         if (HasValidContext && !disposed)
         {
+            ImGui.SetCurrentContext(guiContext);
+            ImGuiImplWin32.SetCurrentContext(guiContext);
+            ImGuiImplOpenGL3.SetCurrentContext(guiContext);
             for (int i = extensionContexts.Length - 1; i >= 0; i--)
             {
                 extensionContexts[i].Dispose();
