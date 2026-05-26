@@ -42,6 +42,18 @@ A workflow with a single widget could connect the visualizer output directly to 
 
 The subject in the example is named `Frame`. The name is arbitrary; pick something readable. What matters is that the frame notifications are shared through a named subject rather than connected directly. UI components can then be grouped into independent modules, each subscribed to `Frame` through its own [`SubscribeSubject`], with sections of the interface toggled on or off, replaced, or rearranged without restructuring the workflow. The same indirection lets widgets nested inside higher-order operators such as [`SelectMany`] reach the source where a direct connection cannot.
 
+## Composing visualizers
+
+Multiple visualizers can share a single canvas. The [`VisualizerMapping`] operator overlays one visualizer onto another, combining their draw calls into the same frame. Each visualizer keeps its own widget chain:
+
+:::workflow
+![An ImGui canvas with an ImPlot mashup](../workflows/backend-setup-composition.bonsai)
+:::
+
+The example overlays an [`ImPlotVisualizer`] onto an [`ImGuiVisualizer`] root canvas. Each visualizer publishes its frame notifications through its own subject, and widgets in both chains draw within the shared canvas. Extensions declared by the overlaid [`ImPlotVisualizer`] are loaded onto the same canvas, so the ImPlot operators connected to its subject can draw alongside the ImGui widgets.
+
+Within each frame the parent visualizer draws first, followed by each overlay in declaration order. The parent therefore establishes the canvas environment, such as styles or framing widgets, before each overlay draws on top.
+
 ## Adding more libraries
 
 Other immediate-mode libraries built on top of ImGui, such as [ImPlot3D](https://github.com/brenocq/implot3d) or [ImGuizmo](https://github.com/CedricGuillemet/ImGuizmo), can be integrated by registering a custom extension. See [Custom extensions](xref:custom-extensions) for the [`IExtensionContext`] and [`IExtensionFactory`] interfaces and a worked example.
@@ -49,6 +61,7 @@ Other immediate-mode libraries built on top of ImGui, such as [ImPlot3D](https:/
 <!-- Reference Style Links -->
 [`ImGuiVisualizer`]: xref:Bonsai.ImGui.Visualizers.ImGuiVisualizerBuilder
 [`ImPlotVisualizer`]: xref:Bonsai.ImGui.Visualizers.ImPlotVisualizerBuilder
+[`VisualizerMapping`]: xref:Bonsai.Expressions.VisualizerMappingBuilder
 [`PublishSubject`]: xref:Bonsai.Reactive.PublishSubject
 [`SubscribeSubject`]: xref:Bonsai.Expressions.SubscribeSubject
 [`SelectMany`]: xref:Bonsai.Reactive.SelectMany
