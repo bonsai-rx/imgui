@@ -1,11 +1,15 @@
-﻿using Bonsai.Design;
+﻿using Bonsai;
+using Bonsai.Design;
 using Bonsai.Expressions;
+using Bonsai.ImGui.Design;
 using Hexa.NET.ImGui;
 using System;
 using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Linq;
 using System.Windows.Forms;
+
+[assembly: TypeVisualizer(typeof(DialogTypeVisualizer), Target = typeof(MashupSource<ImGuiMashupVisualizer>))]
 
 namespace Bonsai.ImGui.Design;
 using ImGui = Hexa.NET.ImGui.ImGui;
@@ -37,8 +41,8 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
         else
         {
             var context = (ITypeVisualizerContext)provider.GetService(typeof(ITypeVisualizerContext));
-            var controlBuilder = (ImGuiMashupVisualizerBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
-            var windowName = controlBuilder.Name ?? controlBuilder.GetType().Name;
+            var visualizerBuilder = (ImGuiMashupVisualizerBuilder)ExpressionBuilder.GetVisualizerElement(context.Source).Builder;
+            var windowName = visualizerBuilder.Name ?? visualizerBuilder.GetType().Name;
 
             imGuiControl = new ImGuiControl();
             imGuiControl.Dock = DockStyle.Fill;
@@ -53,7 +57,7 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
                     ImGuiDockNodeFlags.AutoHideTabBar | ImGuiDockNodeFlags.NoUndocking);
 
                 ImGui.Begin(windowName);
-                controlBuilder._Render.OnNext(Unit.Default);
+                RenderMashup(visualizerBuilder);
                 ImGui.End();
 
                 if (!ImGui.IsWindowDocked() &&
@@ -67,6 +71,20 @@ public abstract class ImGuiMashupVisualizer : MashupVisualizer
             var visualizerService = (IDialogTypeVisualizerService)provider.GetService(typeof(IDialogTypeVisualizerService));
             visualizerService?.AddControl(imGuiControl);
             base.Load(provider);
+        }
+    }
+
+    void RenderMashup(ImGuiMashupVisualizerBuilder builder)
+    {
+        builder._Render.OnNext(Unit.Default);
+        for (int i = 0; i < MashupSources.Count; i++)
+        {
+            var mashupSource = MashupSources[i];
+            if (mashupSource.Source.Builder is ImGuiMashupVisualizerBuilder nestedBuilder &&
+                mashupSource.Visualizer is ImGuiMashupVisualizer nestedMashup)
+            {
+                nestedMashup.RenderMashup(nestedBuilder);
+            }
         }
     }
 

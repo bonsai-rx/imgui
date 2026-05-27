@@ -1,11 +1,6 @@
-﻿using Bonsai;
-using Bonsai.Design;
-using Bonsai.ImGui.Design;
-using Bonsai.ImGui.Visualizers;
+﻿using Bonsai.ImGui.Design;
 using System.Collections.Generic;
 using System.Linq;
-
-[assembly: TypeVisualizer(typeof(ImGuiVisualizer), Target = typeof(MashupSource<ImGuiMashupVisualizer, ImGuiVisualizer>))]
 
 namespace Bonsai.ImGui.Visualizers;
 
