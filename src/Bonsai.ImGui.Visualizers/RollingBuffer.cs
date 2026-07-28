@@ -6,12 +6,12 @@ namespace Bonsai.ImGui.Visualizers;
 
 class RollingBuffer<T>(int capacity) : IReadOnlyCollection<T>
 {
-    private readonly T[] buffer = new T[capacity];
-    private int start;
-    private int end;
-    private int count;
+    private protected readonly T[] buffer = new T[capacity];
+    private protected int start;
+    private protected int end;
+    private protected int count;
 
-    public ref T this[int index]
+    public virtual ref T this[int index]
     {
         get => ref buffer[(start + index) % buffer.Length];
     }
