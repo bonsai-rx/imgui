@@ -11,7 +11,7 @@ namespace Bonsai.ImGui.Visualizers;
 /// <typeparam name="TSource">The type of the elements stored in the rolling buffer.</typeparam>
 public class RollingPlotPointSeries<TSource> : IPlotPointGetter, IPlotPointGetterSeries
 {
-    private readonly RollingBuffer<TSource> storage;
+    private protected readonly RollingBuffer<TSource> storage;
     private readonly NamedPlotPointGetter[] series;
 
     internal RollingPlotPointSeries(RollingBuffer<TSource> buffer, NamedPlotPointGetter[] getters)

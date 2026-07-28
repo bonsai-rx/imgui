@@ -17,9 +17,9 @@ namespace Bonsai.ImGui.Visualizers;
 public class RollingBufferBuilder : SingleArgumentExpressionBuilder
 {
     /// <summary>
-    /// Gets or sets the capacity of the rolling buffer.
+    /// Gets or sets the capacity of the buffer.
     /// </summary>
-    [Description("The capacity of the rolling buffer.")]
+    [Description("The capacity of the buffer.")]
     public int Capacity { get; set; }
 
     /// <summary>
@@ -94,6 +94,18 @@ public class RollingBufferBuilder : SingleArgumentExpressionBuilder
         }
     }
 
+    private protected virtual RollingBuffer<TSource> CreateBuffer<TSource>(int capacity)
+    {
+        return new RollingBuffer<TSource>(capacity);
+    }
+
+    private protected virtual RollingPlotPointSeries<TSource> CreateSeries<TSource>(
+        RollingBuffer<TSource> buffer,
+        NamedPlotPointGetter[] getters)
+    {
+        return new RollingPlotPointSeries<TSource>(buffer, getters);
+    }
+
     static unsafe NamedPlotPointGetter CreatePlotPointGetter<TSource>(
         RollingBuffer<TSource> buffer,
         string name,
@@ -127,9 +139,9 @@ public class RollingBufferBuilder : SingleArgumentExpressionBuilder
     {
         return Observable.Defer(() =>
         {
-            var buffer = new RollingBuffer<TSource>(Capacity);
+            var buffer = CreateBuffer<TSource>(Capacity);
             var getters = Array.ConvertAll(valueGetters, getter => CreatePlotPointGetter(buffer, getter.Key, getter.Value));
-            var series = new RollingPlotPointSeries<TSource>(buffer, getters);
+            var series = CreateSeries(buffer, getters);
             return source.Select(value =>
             {
                 buffer.Push(value);
@@ -142,9 +154,9 @@ public class RollingBufferBuilder : SingleArgumentExpressionBuilder
     {
         return Observable.Defer(() =>
         {
-            var buffer = new RollingBuffer<TSource>(Capacity);
+            var buffer = CreateBuffer<TSource>(Capacity);
             var getters = Array.ConvertAll(valueGetters, getter => CreatePlotPointGetter(buffer, getter.Key, getter.Value));
-            var series = new RollingPlotPointSeries<TSource>(buffer, getters);
+            var series = CreateSeries(buffer, getters);
             return source.Select(value =>
             {
                 buffer.Push(value);
@@ -157,9 +169,9 @@ public class RollingBufferBuilder : SingleArgumentExpressionBuilder
     {
         return Observable.Defer(() =>
         {
-            var buffer = new RollingBuffer<TSource>(Capacity);
+            var buffer = CreateBuffer<TSource>(Capacity);
             var getters = Array.ConvertAll(valueGetters, getter => CreatePlotPointGetter(buffer, getter.Key, indexGetter, getter.Value));
-            var series = new RollingPlotPointSeries<TSource>(buffer, getters);
+            var series = CreateSeries(buffer, getters);
             return source.Select(value =>
             {
                 buffer.Push(value);
@@ -172,9 +184,9 @@ public class RollingBufferBuilder : SingleArgumentExpressionBuilder
     {
         return Observable.Defer(() =>
         {
-            var buffer = new RollingBuffer<TSource>(Capacity);
+            var buffer = CreateBuffer<TSource>(Capacity);
             var getters = Array.ConvertAll(valueGetters, getter => CreatePlotPointGetter(buffer, getter.Key, indexGetter, getter.Value));
-            var series = new RollingPlotPointSeries<TSource>(buffer, getters);
+            var series = CreateSeries(buffer, getters);
             return source.Select(value =>
             {
                 buffer.Push(value);
